@@ -1,0 +1,540 @@
+﻿<UserControl x:Class="ControlLibrary.StonePropertyControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ControlLibrary"
+             mc:Ignorable="d" 
+             d:DesignHeight="580" d:DesignWidth="350">
+    <Grid>
+        <StackPanel>
+            
+            <!--Stone basic IDs and parameters-->
+            <Grid Background="#FF404040" Margin="0, 0, 0, 2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height=".5*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Grid.ColumnSpan="50" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                       Content="Alrosa stone identificators and parameters"
+                       Foreground="White" FontSize="16"/>
+
+                <!--Box ID-->
+                <Grid Grid.Row="1" Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                       Content="{Binding Path=FullBoxId, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                       Foreground="White" FontSize="12"/>
+
+                    <Label Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                       Content="Box ID" Foreground="Gray" FontSize="10"/>
+                </Grid>
+
+                <!--Alrosa ID-->
+                <Grid Grid.Row="1" Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                       Content="{Binding Path=AlrosaID, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                       Foreground="White" FontSize="12"/>
+
+                    <Label Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                       Content="Alrosa ID" Foreground="Gray" FontSize="10"/>
+                </Grid>
+
+                <!--Brief ID-->
+                <Grid Grid.Row="1" Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                       Content="{Binding Path=BriefID, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                       Foreground="White" FontSize="12"/>
+
+                    <Label Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                       Content="Brief ID" Foreground="Gray" FontSize="10"/>
+                </Grid>
+
+                <!--GUID-->
+                <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                       Content="{Binding Path=GUID, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                       Foreground="#FFC8C8C8" FontSize="10"/>
+
+                    <Label Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                       Content="GUID" Foreground="Gray" FontSize="10"/>
+                </Grid>
+
+                <!--Stone Weight-->
+                <Grid Grid.Row="2" Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                       Content="{Binding Path=StoneWeight, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                       Foreground="White" FontSize="12"/>
+
+                    <Label Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                       Content="Stone Weight" Foreground="Gray" FontSize="10"/>
+                </Grid>
+                
+            </Grid>
+            
+            <Separator/>
+            
+            <!--Measured stone parameters and scan IDs-->
+            <Grid Background="#FF404040" Margin="5, 2, 5, 2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height=".5*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Grid.ColumnSpan="50" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                       Content="Measured stone parameters and scan parameters"
+                       Foreground="White" FontSize="14"/>
+
+                <!--Stone ID-->
+                <Grid Grid.Row="1" Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                       Content="{Binding Path=StoneID, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                       Foreground="White" FontSize="12"/>
+
+                    <Label Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                       Content="Stone ID" Foreground="Gray" FontSize="10"/>
+                </Grid>
+                
+                <!--Measured Weight-->
+                <Grid Grid.Row="1" Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                       Content="{Binding Path=MeasuredWeight, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                       Foreground="White" FontSize="12"/>
+
+                    <Label Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                       Content="Measured Weight" Foreground="Gray" FontSize="10"/>
+                </Grid>
+
+                <Separator Grid.Row="3" Grid.ColumnSpan="50"/>
+                
+                <Label Grid.Row="4" Grid.ColumnSpan="50" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                       Content="Galaxy parameters"
+                       Foreground="#FFC8C8C8" FontSize="10"/>
+
+                <!--Scan Date-->
+                <Grid Grid.Row="5" Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                       Content="{Binding Path=FullBoxId, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                       Foreground="White" FontSize="12"/>
+
+                    <Label Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                       Content="Scan Date" Foreground="Gray" FontSize="10"/>
+                </Grid>
+
+                <!--File found-->
+                <Grid Grid.Row="5" Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Label x:Name="lblFileFound" Grid.Column="3" Grid.Row="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                     VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                     Content="&#xE73E;" FontFamily="Segoe MDL2 Assets" FontSize="14" Foreground="Lime"/>
+                    <!--Content="&#xE73E;" FontFamily="Segoe MDL2 Assets" FontSize="72" Foreground="Lime"/>-->
+                    <!--Content="&#xE711;" FontFamily="Segoe MDL2 Assets" FontSize="72" Foreground="Red"-->
+                    <Label Grid.Column="3" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                     VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                     Content="File Found" FontSize="10" Foreground="Gray"/>
+                </Grid>
+
+                <Line Grid.Row="6" Grid.ColumnSpan="3" Margin="10, 0, 10, 0" StrokeDashArray="5, 2" X2="{Binding ActualWidth, RelativeSource={RelativeSource Self}}" Stroke="#FF464664"/>
+
+                <!--GLX File Name-->
+                <Grid Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width=".5*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!--#region Borders-->
+                    <!--Vertival-->
+                    <Border Grid.Column="0" Grid.Row="0" BorderThickness="0,0,1.0,0" BorderBrush="#FF464664"/>
+                    <Border Grid.Column="1" Grid.Row="0" BorderThickness="1.0,0,0,0" BorderBrush="#FF464664"/>
+                    <!--#endregion-->
+
+                    <Label Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"
+                       VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
+                       Content="Galaxy file name" Foreground="Gainsboro" FontSize="12"/>
+                    <!--<TextBlock Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left"
+                           Text="sdf'l,sdfl',d'dsf"
+                           Foreground="White" FontSize="12" TextAlignment="Left"/>-->
+                    <Label Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left"
+                       VerticalContentAlignment="Center" HorizontalContentAlignment="Left">
+                        <Label.Content>
+                            <Run Text="{Binding Path=GLX_FileName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                        Foreground="White" FontSize="12"/>
+                        </Label.Content>
+                    </Label>
+                </Grid>
+
+                <!--GLX Directory Name-->
+                <Grid Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width=".5*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!--#region Borders-->
+                    <!--Vertival-->
+                    <Border Grid.Column="0" Grid.Row="0" Grid.RowSpan="10000" BorderThickness="0,0,1.0,0" BorderBrush="#FF464664"/>
+                    <Border Grid.Column="1" Grid.Row="0" Grid.RowSpan="10000" BorderThickness="1.0,0,0,0" BorderBrush="#FF464664"/>
+                    <!--#endregion-->
+
+                    <Label Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left"
+                       VerticalContentAlignment="Center" HorizontalContentAlignment="Left">
+                        <Label.Content>
+                            <TextBlock Text="Galaxy file directory name" Foreground="Gainsboro" FontSize="12" TextWrapping="Wrap" TextAlignment="Left"/>
+                        </Label.Content>
+                    </Label>
+                    <Label Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left"
+                       VerticalContentAlignment="Center" HorizontalContentAlignment="Left">
+                        <Label.Content>
+                            <Run Text="{Binding Path=GLX_DirectoryName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                       Foreground="White" FontSize="12"/>
+                        </Label.Content>
+                    </Label>
+                </Grid>
+
+            </Grid>
+
+            <Separator/>
+
+            <!--Color and UV-->
+            <Grid Background="#FF404040" Margin="5, 2, 5, 2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height=".5*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Grid.ColumnSpan="50" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                       Content="Color and UV"
+                       Foreground="White" FontSize="14"/>
+
+                <!--ZVI Result-->
+                <Grid Grid.Row="1" Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                       Content="{Binding Path=ZVI_Result, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                       Foreground="White" FontSize="12"/>
+
+                    <Label Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                       Content="ZVI Result" Foreground="Gray" FontSize="10"/>
+                </Grid>
+
+                <!--Color-->
+                <Grid Grid.Row="1" Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                       Content="{Binding Path=Color, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                       Foreground="White" FontSize="12"/>
+
+                    <Label Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                       Content="Color" Foreground="Gray" FontSize="10"/>
+                </Grid>
+
+                <!--Fancy Yellow-->
+                <Grid Grid.Row="1" Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                       Content="{Binding Path=FancyYellow, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                       Foreground="White" FontSize="12"/>
+
+                    <Label Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                       Content="Fancy Yellow" Foreground="Gray" FontSize="10"/>
+                </Grid>
+
+                <!--Brown-->
+                <Grid Grid.Row="2" Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                       Content="{Binding Path=Brown, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                       Foreground="White" FontSize="12"/>
+
+                    <Label Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                       Content="Brown" Foreground="Gray" FontSize="10"/>
+                </Grid>
+
+                <!--Type-->
+                <Grid Grid.Row="2" Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                       Content="{Binding Path=Type, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                       Foreground="White" FontSize="12"/>
+
+                    <Label Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                       Content="Type" Foreground="Gray" FontSize="10"/>
+                </Grid>
+
+                <!--BlueUV-->
+                <Grid Grid.Row="3" Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                       Content="{Binding Path=BlueUV, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                       Foreground="White" FontSize="12"/>
+
+                    <Label Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                       Content="BlueUV" Foreground="Gray" FontSize="10"/>
+                </Grid>
+
+
+                <!--UV Num-->
+                <Grid Grid.Row="3" Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                       Content="{Binding Path=UV_Num, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                       Foreground="White" FontSize="12"/>
+
+                    <Label Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                       Content="UV Num" Foreground="Gray" FontSize="10"/>
+                </Grid>
+
+                <!--YellowUV-->
+                <Grid Grid.Row="3" Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                       Content="{Binding Path=YellowUV, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                       Foreground="White" FontSize="12"/>
+
+                    <Label Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                       Content="Yellow UV" Foreground="Gray" FontSize="10"/>
+                </Grid>
+
+                <!--<Line Grid.Row="4" Grid.ColumnSpan="3" Margin="10, 0, 10, 0" StrokeDashArray="5, 2" X2="{Binding ActualWidth, RelativeSource={RelativeSource Self}}" Stroke="#FF464664"/>-->
+                <Separator Grid.Row="4" Grid.ColumnSpan="50"/>
+                
+                <Label Grid.Row="5" Grid.ColumnSpan="50" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                       Content="Expert color and UV"
+                       Foreground="#FFC8C8C8" FontSize="10"/>
+
+                <!--Expert Color-->
+                <Grid Grid.Row="6" Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                       Content="{Binding Path=ExpertColor, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                       Foreground="White" FontSize="12"/>
+
+                    <Label Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                       Content="Expert Color" Foreground="Gray" FontSize="10"/>
+                </Grid>
+
+                <!--Expert Fancy Yellow-->
+                <Grid Grid.Row="6" Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                       Content="{Binding Path=ExpertFancyYellow, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                       Foreground="White" FontSize="12"/>
+
+                    <Label Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                       Content="Expert Fancy Yellow" Foreground="Gray" FontSize="10"/>
+                </Grid>
+
+                <!--Expert UV-->
+                <Grid Grid.Row="7" Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                       Content="{Binding Path=ExpertUV, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                       Foreground="White" FontSize="12"/>
+
+                    <Label Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                       Content="Expert UV" Foreground="Gray" FontSize="10"/>
+                </Grid>
+
+                <!--Expert UV Color-->
+                <Grid Grid.Row="7" Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                       Content="{Binding Path=ExpertUV_Color, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                       Foreground="White" FontSize="12"/>
+
+                    <Label Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                       Content="Expert UV Color" Foreground="Gray" FontSize="10"/>
+                </Grid>
+
+                <!--GUID-->
+                <Grid Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                       Content="Comment" Foreground="Gray" FontSize="10"/>
+                    
+                    <Label Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                       Content="{Binding Path=Comment, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                       Foreground="White" FontSize="12"/>
+                </Grid>
+            </Grid>
+
+        </StackPanel>
+    </Grid>
+</UserControl>
