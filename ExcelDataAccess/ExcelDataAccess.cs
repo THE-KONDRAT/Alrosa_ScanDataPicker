@@ -185,7 +185,8 @@ namespace DataAccess
             try
             {
                 var props = typeof(Settings.DateFormats).GetProperties();
-                var formatProperty = props.Where(x => x.Name.Equals("name")).FirstOrDefault();
+                //var formatProperty = props.Where(x => x.Name.Equals("name")).FirstOrDefault();
+                var formatProperty = typeof(Settings.DateFormats).GetFields().SingleOrDefault(x => x.Name.Equals(name));
                 if (formatProperty != null)
                 {
                     format = (string)formatProperty.GetValue(null);
