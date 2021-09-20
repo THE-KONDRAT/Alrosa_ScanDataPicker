@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataAccess;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
@@ -325,10 +326,11 @@ namespace Model
 
         #region Methods
 
-        public static ObservableCollection<StoneInfo> GetStonesFromExcel(FileOperations.ExcelOperations xObj, string filePath, string packageName, string boxIdRegexString)
+        public static ObservableCollection<StoneInfo> GetStonesFromExcel(string filePath, string packageName, string boxIdRegexString)
         {
             ObservableCollection<StoneInfo> ocSI = null;
-            var dataArr = xObj.LoadDataFromExcelSheet(filePath); //чтение данных из ячеек в массив            
+            //var dataArr = xObj.LoadDataFromExcelSheet(filePath); //чтение данных из ячеек в массив            
+            var dataArr = ExcelDataAccess.LoadDataFromExcelSheet(filePath);
 
             if (dataArr != null)
             {
@@ -374,7 +376,7 @@ namespace Model
                                         inputDate = DateTime.FromOADate(d);
                                     }
                                     //var v = string.Format($"{{0:{FileOperations.DateFormats.Internal}}}", inputDate);
-                                    dtRow[n - 1] = string.Format($"{{0:{FileOperations.DateFormats.Internal}}}", inputDate);
+                                    dtRow[n - 1] = string.Format($"{{0:{Settings.DateFormats.Internal}}}", inputDate);
                                 }
                                 catch
                                 {
@@ -525,69 +527,6 @@ namespace Model
             //File {Prefix}_{Box ID:-- ()}_{Stone ID}.glx
             return $"{boxId}_{si.StoneID}";
         }
-
-
-        public static void SetScanDateFromFile(StoneInfo si, System.IO.DirectoryInfo stonesDI)
-        {
-            try
-            {
-                bool success = false;
-                DateTime fileScanDate = FileOperations.StoneOperations.GetFileCreationTime(si.GLX_DirectoryName, si.GLX_FileName, stonesDI, ref success);
-                if (!success)
-                {
-                    return;
-                }
-                //string dt = scanDate.ToString();
-
-                //if StoneInfo already has ScanDate
-                if (!string.IsNullOrWhiteSpace(si.ScanDate))
-                {
-                    try
-                    {
-                        DateTime existedDate = DateTime.ParseExact(si.ScanDate, FileOperations.DateFormats.Internal, System.Globalization.CultureInfo.InvariantCulture);
-
-                        string strExDate = FileOperations.DateFormats.ConvertDateTimeToString(existedDate, FileOperations.DateFormats.Internal);
-                        string strScanDate = FileOperations.DateFormats.ConvertDateTimeToString(fileScanDate, FileOperations.DateFormats.Internal);
-                        si.ScanDate = $"{strExDate} ({strScanDate})";
-                        
-                    }
-                    catch (Exception e)
-                    {
-                        //si.ScanDate = FileOperations.DateFormats.ConvertDateTimeToString(existedDate, FileOperations.DateFormats.Internal);
-                    }
-                    
-                }
-                else
-                {
-                    try
-                    {
-                        string strScanDate = FileOperations.DateFormats.ConvertDateTimeToString(fileScanDate, FileOperations.DateFormats.Internal);
-                        si.ScanDate = strScanDate;
-
-                    }
-                    catch (Exception e)
-                    {
-                        //si.ScanDate = FileOperations.DateFormats.ConvertDateTimeToString(existedDate, FileOperations.DateFormats.Internal);
-                    }
-                }
-                
-                /*if (si.ScanDate != dt)
-                {
-                    si.ScanDate += $" ({dt})";
-                    var v = string.Format($"{{0:{FileOperations.DateFormats.Internal}}}", inputDate);
-                }
-                else
-                {
-                    si.ScanDate = dt;
-                }*/
-                si.FileFound = true;
-            }
-            catch (Exception e)
-            {
-
-            }
-        }
-
         #endregion
 
         internal void OnPropertyChanged(String property)

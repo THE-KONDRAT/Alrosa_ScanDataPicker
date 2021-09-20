@@ -38,10 +38,11 @@
             <Label Grid.Row="0" Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
                    VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
                    Content="XLX Path" FontSize="12" Foreground="White"/>
-            <TextBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Margin="3"
+            <TextBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Margin="3" MaxHeight="20"
                      Text="{Binding Path=ExcelFilePath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                      IsEnabled="{Binding Path=LoadEnabled, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
             <Button Grid.Row="0" Grid.Column="3" Command="{Binding ElementName=this, Path=OpenExcelCommand}"
+                    MaxHeight="20"
                     Background="Transparent" Margin="3"
                     Content="Open file" Foreground="LightBlue"
                     IsEnabled="{Binding Path=LoadEnabled, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
@@ -49,11 +50,12 @@
             <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
                    VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
                    Content="Stones Path" FontSize="12" Foreground="White"/>
-            <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="3"
+            <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="3" MaxHeight="20"
                      Text="{Binding Path=StonesPath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                      IsEnabled="{Binding Path=LoadEnabled, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
 
             <Button Grid.Row="1" Grid.Column="3" Command="{Binding ElementName=this, Path=OpenStonesFolderCommand}"
+                    MaxHeight="20"
                     Background="Transparent" Margin="3"
                     Content="Open folder" Foreground="LightBlue"
                     IsEnabled="{Binding Path=LoadEnabled, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
@@ -61,7 +63,7 @@
             <Label Grid.Row="2" Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
                    VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
                    Content="Package" FontSize="12" Foreground="White"/>
-            <TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="3"
+            <TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="3" MaxHeight="20"
                      Text="{Binding Path=Package, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                      IsEnabled="{Binding Path=LoadEnabled, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
 
@@ -69,12 +71,14 @@
                    VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
                    Content="Conflict mode:" FontSize="12" Foreground="White"/>
             <ComboBox x:Name="cbConflict" Grid.Row="4" Grid.Column="3" Background="Transparent"
+                      MaxHeight="20"
                       Margin="0, 3, 0, 3"
                       ItemsSource="{Binding Path=ConflictModes, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                       HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
 
 
             <Button Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="1" Command="{Binding ElementName=this, Path=GetStonesFromExcelCommand}"
+                    MaxHeight="40"
                     Background="Transparent" Margin="3"
                     IsEnabled="{Binding Path=LoadEnabled, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
                 <Button.Content>
@@ -83,6 +87,7 @@
             </Button>
 
             <Button Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2" Command="{Binding ElementName=this, Path=SaveScanDateToExcelCommand}"
+                    MaxHeight="40"
                     Background="Transparent" Margin="3"
                     IsEnabled="{Binding Path=SaveEnabled, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
                 <Button.Content>
@@ -103,7 +108,7 @@
             </ScrollViewer>
             <StatusBar Grid.Row="1" Background="#FF202020">
                 <StackPanel x:Name="sb" Orientation="Horizontal">
-                    <Viewbox>
+                    <Viewbox MaxHeight="20" Stretch="Uniform">
                         <TextBlock Text="{Binding Path=StonesFoundStatus, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Foreground="White"/>
                     </Viewbox>
                 </StackPanel>

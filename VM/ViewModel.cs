@@ -1,24 +1,17 @@
-﻿using Microsoft.Win32;
-using Microsoft.WindowsAPICodePack.Dialogs;
+﻿using Microsoft.WindowsAPICodePack.Dialogs;
 using Model;
-using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
-using Excel = Microsoft.Office.Interop.Excel;
 
 namespace VM
 {
@@ -132,18 +125,16 @@ namespace VM
         }
 
         private static string settingPath = $"{AppDomain.CurrentDomain.BaseDirectory}\\Settings.json";//.txt";//.json";
-        private FileOperations.Settings settings;
-        public FileOperations.Settings Settings
+        private Settings.Settings programSettings;
+        public Settings.Settings ProgramSettings
         {
-            get { return settings; }
+            get { return programSettings; }
             set
             {
-                settings = value;
-                OnPropertyChanged("Settings");
+                programSettings = value;
+                OnPropertyChanged("ProgramSettings");
             }
         }
-
-        private FileOperations.ExcelOperations xObj;
 
         private bool loadEnabled;
         public bool LoadEnabled
@@ -166,6 +157,9 @@ namespace VM
                 OnPropertyChanged("SaveEnabled");
             }
         }
+
+        private Settings.DateConflictMode conflictMode;
+
         private ObservableCollection<ComboBoxItem> conflictModes;
         public ObservableCollection<ComboBoxItem> ConflictModes
         {
@@ -187,22 +181,19 @@ namespace VM
             }
         }*/
 
-        public FileOperations.ExcelOperations.DateConflictMode ConflictMode;
-
         public ViewModel()
         {
             stoneControls = new ObservableCollection<ControlLibrary.StoneControl>();
-            Settings = new FileOperations.Settings();
+            ProgramSettings = new Settings.Settings();
             SaveEnabled = false;
             LoadEnabled = true;
             //BindingSettingsValues();
             if (System.IO.File.Exists(settingPath))
             {
-                Settings = FileOperations.Settings.LoadSettings(settingPath);
+                ProgramSettings = Settings.Settings.LoadSettings(settingPath);
                 //GetValuesFromSettings();
             }
             BindingSettingsValues();
-            xObj = new FileOperations.ExcelOperations();
             FillConflictModes();
             //SW_Props = new ScrollViewer();
         }
@@ -258,15 +249,17 @@ namespace VM
                         switch (senderName)
                         {
                             case "From Excel":
-                                this.ConflictMode = FileOperations.ExcelOperations.DateConflictMode.FromExcel;
+                                this.conflictMode = Settings.DateConflictMode.FromExcel;
+                                ProgramSettings.DateConflictMode = this.conflictMode;
                                 break;
                             case "From File":
-                                this.ConflictMode = FileOperations.ExcelOperations.DateConflictMode.FromFile;
+                                this.conflictMode = Settings.DateConflictMode.FromFile;
                                 break;
                             case "Earliest":
-                                this.ConflictMode = FileOperations.ExcelOperations.DateConflictMode.Earliest;
+                                this.conflictMode = Settings.DateConflictMode.Earliest;
                                 break;
                         }
+                        ProgramSettings.DateConflictMode = this.conflictMode;
                     }
                 }
                 catch (Exception ex)
@@ -279,11 +272,11 @@ namespace VM
 
         private void BindingSettingsValues()
         {
-            if (Settings != null)
+            if (ProgramSettings != null)
             {
-                SetTwoWayBinding(Settings, nameof(Settings.StartExcelPath), this, ExcelFilePathProperty);
-                SetTwoWayBinding(Settings, nameof(Settings.StartStonesDir), this, StonesPathProperty);
-                SetTwoWayBinding(Settings, nameof(Settings.Package), this, PackageProperty);
+                SetTwoWayBinding(ProgramSettings, nameof(Settings.Settings.StartExcelPath), this, ExcelFilePathProperty);
+                SetTwoWayBinding(ProgramSettings, nameof(Settings.Settings.StartStonesDir), this, StonesPathProperty);
+                SetTwoWayBinding(ProgramSettings, nameof(Settings.Settings.Package), this, PackageProperty);
             }
         }
 
@@ -292,14 +285,14 @@ namespace VM
             CommonOpenFileDialog COFD = new CommonOpenFileDialog();
             COFD.IsFolderPicker = false;
             COFD.Title = "Select excel file";
-            if (Settings != null)
+            if (ProgramSettings != null)
             {
-                if (!string.IsNullOrWhiteSpace(Settings.StartExcelPath))
+                if (!string.IsNullOrWhiteSpace(ProgramSettings.StartExcelPath))
                 {
                     try
                     {
-                        COFD.DefaultDirectory = System.IO.Path.GetDirectoryName(Settings.StartExcelPath);
-                        COFD.DefaultFileName = Settings.StartExcelPath;
+                        COFD.DefaultDirectory = System.IO.Path.GetDirectoryName(ProgramSettings.StartExcelPath);
+                        COFD.DefaultFileName = ProgramSettings.StartExcelPath;
                     }
                     catch
                     {
@@ -313,21 +306,25 @@ namespace VM
             {
                 ExcelFilePath = COFD.FileName;
                 //settings.StartExcelPath = XLX_FilePath;
-                Settings.SaveSettings(settingPath);
-                //XLX_FilePath = "C:\\Users\\Ko12A\\Downloads\\109E_AlrosaId_G.xlsx";
+                ProgramSettings.SaveSettings(settingPath);
+                //XLX_FilePath = "C:\\Users\\Ko12A\\Downloads\\109E_AlrosaId_G.xlsx";]
+
+
+                ClearStoneCollections();
             }
         }
+
 
         public void OpenStonesFolderFile()
         {
             CommonOpenFileDialog COFD = new CommonOpenFileDialog();
             COFD.IsFolderPicker = true;
             COFD.Title = "Select stones folder";
-            if (Settings != null)
+            if (ProgramSettings != null)
             {
-                if (!string.IsNullOrWhiteSpace(Settings.StartStonesDir))
+                if (!string.IsNullOrWhiteSpace(ProgramSettings.StartStonesDir))
                 {
-                    COFD.DefaultDirectory = Settings.StartStonesDir;
+                    COFD.DefaultDirectory = ProgramSettings.StartStonesDir;
                 }
             }
             var DR = COFD.ShowDialog();
@@ -339,9 +336,27 @@ namespace VM
                 //fileName = "C:\\Users\\Ko12A\\Downloads\\";
 
                 StonesPath = fileName;
-                Settings.StartStonesDir= StonesPath;
-                Settings.SaveSettings(settingPath);
+                ProgramSettings.StartStonesDir = StonesPath;
+                ProgramSettings.SaveSettings(settingPath);
+
+                ClearStoneCollections();
             }
+        }
+
+        private void ClearStoneCollections()
+        {
+            //check and wait if saving
+            if (ocSI != null)
+            {
+                ocSI.Clear();
+            }
+            if (StoneControls != null)
+            {
+                StoneControls.Clear();
+            }
+
+            SaveEnabled = false;
+            LoadEnabled = true;
         }
 
         public void GetStonesFromExcel()
@@ -363,13 +378,11 @@ namespace VM
             string stonesPath = string.Empty;
             string excelPath = string.Empty;
             string pkg = string.Empty;
-            FileOperations.ExcelOperations exObj = null;
             
             Application.Current.Dispatcher.Invoke(new Action(() =>
             {
                 stonesPath = StonesPath;
                 excelPath = ExcelFilePath;
-                exObj = xObj;
                 pkg = Package;
                 SaveEnabled = false;
                 LoadEnabled = false;
@@ -387,7 +400,7 @@ namespace VM
             await task;
             
             ocSI = task.Result;*/
-            ObservableCollection<StoneInfo> oc = StoneInfo.GetStonesFromExcel(exObj, excelPath, pkg, FileOperations.StoneOperations.BoxIdRegexString);
+            ObservableCollection<StoneInfo> oc = StoneInfo.GetStonesFromExcel(excelPath, pkg, FileOperations.StoneOperations.BoxIdRegexString);
 
             int curFile = 0;
             BusinessLogic.StoneSearcher searcher = new BusinessLogic.StoneSearcher();
@@ -459,7 +472,7 @@ namespace VM
 
             Application.Current.Dispatcher.Invoke(new Action(() =>
             {
-                Settings.SaveSettings(settingPath);
+                ProgramSettings.SaveSettings(settingPath);
                 SaveEnabled = true;
                 LoadEnabled = true;
             }
@@ -531,7 +544,7 @@ namespace VM
             SaveEnabled = false;
             DataTable dt = CreateScanDateDataTable(ocSI);
 
-            xObj.SaveScanDataDataTable(ExcelFilePath, dt, ConflictMode);
+            DataAccess.ExcelDataAccess.SaveScanDataDataTable(ExcelFilePath, dt, ProgramSettings.DateColumnSettings, ProgramSettings.DateConflictMode);
             MessageBox.Show("Successfully saved");
             SaveEnabled = true;
         }
