@@ -453,11 +453,15 @@ namespace Model
                 return null;
             }
 
+            //glxFile
             si.GLX_DirectoryName = CreateGLX_DirectoryName(si);
             si.glx_FileName = CreateGLX_FileName(si);
 
             //FileInfo fi = new FileInfo()
             si.FileFound = false;
+            si.FileFound = false;
+
+            //Adv file
             //si.FileFound = false; //FindFile(si, scanfolder)
 
             return si;

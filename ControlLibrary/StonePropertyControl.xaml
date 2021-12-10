@@ -184,7 +184,7 @@
                        Foreground="#FFC8C8C8" FontSize="10"/>
 
                 <!--Scan Date-->
-                <Grid Grid.Row="5" Grid.Column="0">
+                <Grid Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
@@ -192,7 +192,7 @@
 
                     <Label Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center"
                        VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
-                       Content="{Binding Path=FullBoxId, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                       Content="{Binding Path=ScanDate, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                        Foreground="White" FontSize="12"/>
 
                     <Label Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"
