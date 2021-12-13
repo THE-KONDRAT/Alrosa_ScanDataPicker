@@ -241,6 +241,7 @@ namespace Model
             get { return scanDate; }
             set
             {
+                //if (value == fullBoxId) throw new Exception("here!");
                 scanDate = value;
                 OnPropertyChanged("ScanDate");
             }

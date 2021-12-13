@@ -368,6 +368,7 @@ namespace VM
             }
             catch (Exception e)
             {
+                MessageBox.Show(e.Message, "Error");
                 return;
             }
             Task.Run(() => a_GetStonesFromExcel());
@@ -390,7 +391,7 @@ namespace VM
                 spStatus.Children.RemoveRange(1, spStatus.Children.Count - 1);
             }
             ));
-            
+
 
             /*Task<ObservableCollection<StoneInfo>> task = new Task<ObservableCollection<StoneInfo>>(
                 () => BusinessLogic.ModelLogic.GetStonesFromExcel(xObj, XLX_FilePath, Prefix, boxIdRegexString)
@@ -401,7 +402,6 @@ namespace VM
             
             ocSI = task.Result;*/
             ObservableCollection<StoneInfo> oc = StoneInfo.GetStonesFromExcel(excelPath, pkg, FileOperations.StoneOperations.BoxIdRegexString);
-
             int curFile = 0;
             BusinessLogic.StoneSearcher searcher = new BusinessLogic.StoneSearcher();
 
@@ -523,7 +523,6 @@ namespace VM
             try
             {
                 ValidateInputData();
-                ValidateInputData();
                 if (ocSI == null)
                 {
                     throw new Exception("Stones collection is empty");
@@ -538,6 +537,7 @@ namespace VM
             }
             catch (Exception e)
             {
+                MessageBox.Show(e.Message, "Error");    
                 return;
             }
 
@@ -638,7 +638,6 @@ namespace VM
                     }
 
                     sc.Selected = true;
-
                     ControlLibrary.StonePropertyControl spC = CreateStonePropertyControl((StoneInfo)sc.DataContext);
                     if (spC != null)
                     {

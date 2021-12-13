@@ -6,20 +6,22 @@
         xmlns:local="clr-namespace:ScanDatePicker"
         xmlns:VM ="clr-namespace:VM;assembly=VM"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" MinHeight="450" MinWidth="800"
+        Title="ScanDatePicker" Height="450" Width="800" MinHeight="450" MinWidth="800"
         d:DataContext="{d:DesignInstance Type=VM:ViewModel}"
         x:Name="this">
     <Grid Background="#FB303030">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="11*"/>
+            <ColumnDefinition Width="89*"/>
+            <ColumnDefinition Width="3"/>
+            <ColumnDefinition Width="100*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Grid.Column="0">
+        <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.5*"/>
                 <RowDefinition Height=".5*"/>
@@ -46,7 +48,7 @@
                     Background="Transparent" Margin="3"
                     Content="Open file" Foreground="LightBlue"
                     IsEnabled="{Binding Path=LoadEnabled, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
-            
+
             <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
                    VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
                    Content="Stones Path" FontSize="12" Foreground="White"/>
@@ -96,7 +98,8 @@
             </Button>
         </Grid>
 
-        <Grid Grid.Row="1" Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Width="Auto" Height="Auto">
+        <Grid Grid.Row="1" Grid.Column="0" Width="Auto" Height="Auto" Grid.ColumnSpan="2"
+              VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height=".1*"/>
@@ -116,8 +119,10 @@
 
         </Grid>
 
-        <ScrollViewer x:Name="swProps" Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Width="Auto" Height="Auto">
+        <Viewbox Grid.Row="0" Grid.Column="2" Grid.RowSpan="100" Stretch="UniformToFill" Margin="1,0,0,0">
+            <Line X1="0" Y1="10" X2="0" Y2="0" Stroke="DarkMagenta" StrokeThickness="1" StrokeDashArray=".7, .7, .2"/>
+        </Viewbox>
 
-        </ScrollViewer>
+        <ScrollViewer x:Name="swProps" Grid.Row="0" Grid.RowSpan="2" Grid.Column="3" Width="Auto" Height="Auto"/>
     </Grid>
 </Window>

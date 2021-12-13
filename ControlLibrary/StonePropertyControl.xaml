@@ -181,7 +181,7 @@
                 <Label Grid.Row="4" Grid.ColumnSpan="50" VerticalAlignment="Center" HorizontalAlignment="Center"
                        VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
                        Content="Galaxy parameters"
-                       Foreground="#FFC8C8C8" FontSize="10"/>
+                       Foreground="#FFC8C8C8" FontSize="12"/>
 
                 <!--Scan Date-->
                 <Grid Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2">
@@ -447,7 +447,7 @@
                 <Label Grid.Row="5" Grid.ColumnSpan="50" VerticalAlignment="Center" HorizontalAlignment="Center"
                        VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
                        Content="Expert color and UV"
-                       Foreground="#FFC8C8C8" FontSize="10"/>
+                       Foreground="#FFC8C8C8" FontSize="12"/>
 
                 <!--Expert Color-->
                 <Grid Grid.Row="6" Grid.Column="0">
